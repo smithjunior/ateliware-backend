@@ -9,3 +9,10 @@ tmp
 
 # The development sqlite file
 database/*.sqlite
+
+data
+dump
+.config
+.npm
+.bash_history
+
