@@ -17,5 +17,9 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return {
+    greeting: 'Hello world in JSON'
+  }
 })
+
+Route.resource('/repositories', 'RepositoryController').apiOnly()

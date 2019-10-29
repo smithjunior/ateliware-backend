@@ -4,6 +4,12 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const axios = require('axios')
+const Repository = use('App/Models/Repository')
+const Database = use('Database')
+const {
+  sanitize
+} = use('Validator')
 /**
  * Resourceful controller for interacting with repositories
  */
@@ -17,76 +23,60 @@ class RepositoryController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-  }
+  async index({
+    request,
+    response,
+    view
+  }) {
+    // get Language from request
+    const {
+      language
+    } = request.all()
 
-  /**
-   * Render a form to be used for creating a new repository.
-   * GET repositories/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
+    // Search on database for the repositories on database by language
+    const repositoriesListDatabase = await Repository.query()
+      .where('language', language.toLowerCase())
+      .fetch()
 
-  /**
-   * Create/save a new repository.
-   * POST repositories
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
-  }
+    // If exists in database return them
+    if (repositoriesListDatabase.size()) {
+      return response.json(repositoriesListDatabase)
+    }
 
-  /**
-   * Display a single repository.
-   * GET repositories/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
+    // Rules for sanitize return payload
+    const rules = {
+      full_name: 'escape',
+      description: 'escape'
+    }
 
-  /**
-   * Render a form to update an existing repository.
-   * GET repositories/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+    // getGitHub repositories by api
+    const githubPayload = await axios.get(`https://api.github.com/search/repositories?q=language%3A${language}&sort=stars&order=desc&page=1`)
 
-  /**
-   * Update repository details.
-   * PUT or PATCH repositories/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
+    // Prepare list of repositories
+    const repositoriesList = githubPayload.data.items.map((item) => {
+      const repository = {}
+      repository.name = item.name
+      repository.full_name = item.full_name
+      repository.html_url = item.html_url
+      repository.homepage = item.homepage
+      repository.private = item.private
+      repository.description = item.hasOwnProperty('description') ? item.description : ''
+      repository.owner_login = item.owner.login
+      repository.owner_gravatar = item.owner.gravatar
+      repository.owner_html_url = item.owner.html_url
+      repository.open_issues = item.open_issues
+      repository.creation_datetime = item.created_at
+      repository.last_update_datetime = item.updated_at
+      repository.language = item.language.toLowerCase()
+      repository.forks_count = item.forks_count
+      repository.watchers = item.watchers
+      return sanitize(repository, rules)
+    })
 
-  /**
-   * Delete a repository with id.
-   * DELETE repositories/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    // Bulk insert list of repositories
+    const resp = await Repository.createMany(repositoriesList)
+
+    return response.json(resp)
   }
 }
 
