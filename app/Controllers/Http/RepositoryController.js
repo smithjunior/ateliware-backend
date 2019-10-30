@@ -78,6 +78,34 @@ class RepositoryController {
 
     return response.json(resp)
   }
+
+  /**
+   * Display a single repository.
+   * GET repositories/:id
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {View} ctx.view
+   */
+  async show({
+    params,
+    request,
+    response,
+    view
+  }) {
+    const {
+      id
+    } = params
+
+    if (!Number.isInteger(parseInt(id)) || parseInt(id) < 1) {
+      return response.status(400).send('Params invalid!')
+    }
+
+    const repository = await Repository.findBy('id', id)
+
+    return response.json(repository)
+  }
 }
 
 module.exports = RepositoryController

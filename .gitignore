@@ -15,4 +15,5 @@ dump
 .config
 .npm
 .bash_history
-
+pack
+package-lock.json

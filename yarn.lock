@@ -143,6 +143,15 @@
     haye "^2.0.1"
     lodash "^4.17.5"
 
+"@adonisjs/validator@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@adonisjs/validator/-/validator-5.0.6.tgz#5354cebcf578b964ca58de24436ae00718bd5fd4"
+  integrity sha512-Koql5nOSfRFhNwkvk38tAHLfpxwuOinZIuLhPP0zAfHCltrXCh02MfydfgA13vDc5LITJgWycXFv+FNb7ljCqg==
+  dependencies:
+    "@adonisjs/generic-exceptions" "^2.0.1"
+    indicative "^5.0.8"
+    lodash "^4.17.11"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -1347,6 +1356,11 @@ indent-string@^3.2.0:
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-3.2.0.tgz#4a5fd6d27cc332f37e5419a504dbb837105c9289"
   integrity sha1-Sl/W0nzDMvN+VBmlBNu4NxBckok=
 
+indicative@^5.0.8:
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/indicative/-/indicative-5.0.8.tgz#e635f6c0838ced1a949bc898e5f8316f6291be1e"
+  integrity sha512-Do9YKlrxyvK6RpMs9AdtxmjhweKrA6hJbJejY81iD8aYjjvOU4HYkJcM2IUxC3S7ZRm/L11u67QT4OQ101N5HQ==
+
 inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
@@ -2478,6 +2492,11 @@ qs@^6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.0.tgz#d1297e2a049c53119cb49cca366adbbacc80b409"
   integrity sha512-27RP4UotQORTpmNQDX8BHPukOnBP3p1uUJY5UnDhaJB+rMt9iMsok724XL+UHU23bEFOHRMQ2ZhI99qOWUMGFA==
 
+querystringify@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
+  integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
+
 radio-symbol@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/radio-symbol/-/radio-symbol-2.0.0.tgz#7aa9bfc50485636d52dd76d6a8e631b290799ae1"
@@ -2603,6 +2622,11 @@ require-uncached@^1.0.3:
   dependencies:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
+
+requires-port@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+  integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
 resetable@^1.0.3:
   version "1.0.3"
@@ -3138,6 +3162,14 @@ url-parse-lax@^3.0.0:
   integrity sha1-FrXK/Afb42dsGxmZF3gj1lA6yww=
   dependencies:
     prepend-http "^2.0.0"
+
+url-parse@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
+  integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
+  dependencies:
+    querystringify "^2.1.1"
+    requires-port "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"
