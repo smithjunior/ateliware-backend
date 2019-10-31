@@ -1,8 +1,17 @@
-# Ateliware Backend application
+# Ateliware Backend Application
 
-Aplication to find and persist repositories on GitHub!
+Application to find and persist popular repositories on GitHub made with AdonisJS!
 
-## Running application
+## Running local
+
+```bash
+$ yarn global add @adonisjs/cli
+$ cp .env.example .env
+$ yarn install
+$ adonis serve --dev
+```
+
+## Running application on docker
 
 ```bash
 $ docker-composer up -d --build --force-recreate
