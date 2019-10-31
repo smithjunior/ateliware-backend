@@ -20,3 +20,9 @@ $ docker-composer up -d --build --force-recreate
 Access localhost on browser
 
 > http://localhost:3333
+
+## Running Teste
+
+```bash
+$ adonis test
+```
