@@ -1,0 +1,51 @@
+{
+  "name": "ateliware-testing-application",
+  "description":"Ateliware project",
+  "repository" : "https://github.com/smithjunior/ateliware-backend.git",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Hobby"
+    },
+    "release": {
+      "quantity": 1,
+      "size": "Hobby"
+    }
+
+  },
+  "scripts": {
+  },
+  "env": {
+   "APP_KEY":{
+      "description": "App env",
+      "value": "YnBhvfRLYg4NKWo8CTsJvsYHtWTx2EF5"
+    },
+    "DB_CONNECTION": {
+      "description": "Db Connection",
+      "value": "mysql"
+    }
+  },
+  "addons": [
+    "cleardb"
+  ],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }],
+  "environments": {
+    "review": {
+      "formation": {
+        "web": {
+          "quantity": 1,
+          "size": "Hobby"
+        },
+        "release": {
+          "quantity": 1,
+          "size": "Hobby"
+        }
+
+      },
+      "addons": ["cleardb:ignite"]
+    }
+   },
+  "stack": "heroku-18"
+}
